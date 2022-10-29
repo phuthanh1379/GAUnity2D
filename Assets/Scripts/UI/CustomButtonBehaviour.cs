@@ -6,18 +6,18 @@ public class CustomButtonBehaviour : MonoBehaviour, IPointerEnterHandler, IPoint
 {
     [SerializeField] private Animator animator;
 
-    private void Start()
-    {
-        animator.enabled = false;
-    }
+    public event Action OnCustomMouseEnterEvent;
+    public Action OnCustomMouseExitEvent;
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        animator.enabled = true;
+        animator.SetBool("isHover", true);
+        OnCustomMouseEnterEvent?.Invoke();
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        animator.enabled = false;
+        animator.SetBool("isHover", false);
+        OnCustomMouseExitEvent?.Invoke();
     }
 }
