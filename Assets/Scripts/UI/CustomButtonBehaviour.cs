@@ -20,4 +20,9 @@ public class CustomButtonBehaviour : MonoBehaviour, IPointerEnterHandler, IPoint
         animator.SetBool("isHover", false);
         OnCustomMouseExitEvent?.Invoke();
     }
+
+    public int ReturnInt(int a)
+    {
+        return a;
+    }
 }

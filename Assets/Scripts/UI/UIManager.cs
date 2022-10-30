@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,7 +15,7 @@ public class UIManager : MonoBehaviour
 
     private int _enterCount = 0;
     private int _exitCount = 0;
-    
+
     private void OnEnable()
     {
         aboutButton.onClick.AddListener(OnClickButton);
@@ -48,6 +49,6 @@ public class UIManager : MonoBehaviour
 
     public void OnClickButton()
     {
-        Debug.Log("Clicked!");
+        
     }
 }
