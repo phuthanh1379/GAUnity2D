@@ -1,4 +1,3 @@
-using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,7 +11,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Button aboutButton;
     [SerializeField] private TMP_Text enterDisplayLabel;
     [SerializeField] private TMP_Text exitDisplayLabel;
-
+    
     private int _enterCount = 0;
     private int _exitCount = 0;
 
@@ -49,6 +48,6 @@ public class UIManager : MonoBehaviour
 
     public void OnClickButton()
     {
-        
+        Debug.Log("Clicked!");
     }
 }
