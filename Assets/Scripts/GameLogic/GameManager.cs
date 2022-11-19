@@ -2,6 +2,9 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// Script to manage the game
+/// </summary>
 public class GameManager : MonoBehaviour
 {
     #region Variables
@@ -47,15 +50,16 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        playerNameText.text = playerProfile.playerSettings.playerName;
-        playerHPText.text = playerProfile.playerSettings.initialHp.ToString();
-        scoreText.text = playerProfile.playerSettings.initialScore.ToString();
+        playerNameText.text = playerProfile.PlayerName;
+        playerHPText.text = playerProfile.HitPoint.ToString();
+        scoreText.text = playerProfile.Score.ToString();
 
         Init();
     }
 
     private void Update()
     {
+        // If game is already over, disable the pause function
         if (Input.GetKeyDown(KeyCode.Escape) && !_isGameOver)
             PauseGame();
     }
@@ -78,11 +82,18 @@ public class GameManager : MonoBehaviour
 
     #region Events
 
+    /// <summary>
+    /// Event to call when player scores
+    /// </summary>
+    /// <param name="score"></param>
     private void OnPlayerScoring(int score)
     {
         scoreText.text = score.ToString();
     }
 
+    /// <summary>
+    /// Event to call when player is dead
+    /// </summary>
     private void OnPlayerDead()
     {
         EndGame();
@@ -91,42 +102,73 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region Methods
-
-    private void PauseGame()
-    {
-        _isPause = !_isPause;
-
-        if (_isPause)
-        {
-            // playerMoveController.SetMovable(false);
-            pauseGamePanel.SetActive(true);
-            pausePlayerNameText.text = playerProfile.playerSettings.playerName;
-            pauseScoreText.text = playerProfile.Score.ToString();
-        }
-        else
-        {
-            // pauseGamePanel.SetActive(false);
-            playerMoveController.SetMovable(true);
-        }
-    }
     
+    /// <summary>
+    /// Initialize the script
+    /// </summary>
     private void Init()
     {
+        // Init player's scripts
         playerProfile.Init();
         playerMoveController.Init();
+        
+        // Reset the boolean variables
         _isPause = false;
         _isGameOver = false;
+        
+        // Hide the panels
         pauseGamePanel.SetActive(false);
         endGamePanel.SetActive(false);
     }
 
+    /// <summary>
+    /// Pause the game
+    /// </summary>
+    private void PauseGame()
+    {
+        _isPause = !_isPause;
+
+        // Pause the game
+        if (_isPause)
+        {
+            // Disable player's movement
+            playerMoveController.SetMovable(false);
+            
+            // Display the pause-game panel
+            pauseGamePanel.SetActive(true);
+            
+            // Display stats for the pause-game panel
+            pausePlayerNameText.text = playerProfile.PlayerName;
+            pauseScoreText.text = playerProfile.Score.ToString();
+        }
+        // Unpause the game
+        else
+        {
+            // Hide pause-game panel
+            pauseGamePanel.SetActive(false);
+            
+            // Enable player's movement
+            playerMoveController.SetMovable(true);
+        }
+    }
+
+    /// <summary>
+    /// End the game
+    /// </summary>
     private void EndGame()
     {
+        // Disable player's movement
         playerMoveController.SetMovable(false);
+        
+        // Turn on the state game-over
         _isGameOver = true;
+        
+        // Display the end-game panel
         endGamePanel.SetActive(true);
+        
+        // Display stats for the end-game panel
         endgameScoreText.text = playerProfile.Score.ToString();
-        endgamePlayerNameText.text = playerProfile.playerSettings.playerName;
+        endgamePlayerNameText.text = playerProfile.PlayerName;
     }
 
     #endregion

@@ -13,3 +13,10 @@ Assets/TextMesh Pro
 Assets/Plugins/DOTween
 Assets/Plugins/DOTween.meta
 Assets/Resources
+*.csproj
+Assets/StreamingAssets
+Assets/StreamingAssets.meta
+Assets/Plugins/Assets_DevilsWorkShop
+Assets/Plugins/Free Pack
+Assets/Plugins/Free Pack.meta
+Assets/Plugins/Assets_DevilsWorkShop.meta

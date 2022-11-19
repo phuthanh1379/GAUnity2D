@@ -1,34 +1,38 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+using Common;
+using DG.Tweening;
 using UnityEngine;
 
+/// <summary>
+/// Script to control player's movement and animations
+/// </summary>
 public class PlayerMoveController : MonoBehaviour
 {
+    #region Variables
+
     [Header("Components")]
-    public Rigidbody2D rb2d;
-    public Transform groundCheck;
-    public LayerMask groundLayer;
-    public Animator animator;
+    [SerializeField] private Rigidbody2D rb2d;
+    [Tooltip("Pseudo transform to act as player's point of contact with ground layer")] 
+    [SerializeField] private Transform groundCheck;
+    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private Animator animator;
 
     [Header("Movement settings")] 
-    [Tooltip("Player's movement speed")] public float speed = 8f;
-    public float jumpPower = 16f;
+    [Tooltip("Player's movement speed")] 
+    [SerializeField] private float speed = 8f;
+    [SerializeField] private float jumpPower = 16f;
     
     // Private
-    private bool _isGrounded; // is the player in the ground?
     private float _horizontal; // horizontal movement input
     private bool _isMovable;
-    private static readonly Vector3 InitialPosition = new Vector3(-7f, 5f, 1f);
+    private static readonly Vector3 InitialPosition = new(-7f, 5f, 1f); // player's initial position
 
-    public void Init()
-    {
-        _isMovable = true;
-        transform.position = InitialPosition;
-    }
-    
+    #endregion
+
+    #region Unity Methods
+
     private void Update()
     {
+        // If player is not movable, do not run the rest
         if (!_isMovable) return;
         
         // Get horizontal movement input
@@ -59,6 +63,41 @@ public class PlayerMoveController : MonoBehaviour
         rb2d.velocity = new Vector2(_horizontal * speed, rb2d.velocity.y);
     }
 
+    #endregion
+
+    #region Methods
+
+    /// <summary>
+    /// Initialize the controller
+    /// </summary>
+    public void Init()
+    {
+        _isMovable = true;
+        transform.position = InitialPosition;
+    }
+    
+    /// <summary>
+    /// Set if player can move or not
+    /// </summary>
+    /// <param name="isMovable"></param>
+    public void SetMovable(bool isMovable)
+    {
+        _isMovable = isMovable;
+    }
+
+    /// <summary>
+    /// Animation to run when player is hurt
+    /// </summary>
+    public void PlayerHurt()
+    {
+        animator.SetBool(GameConstants.Hurt, true);
+        var tween = transform.DOScale(transform.localScale * 1.1f, 0.5f);
+        tween.OnComplete(() => animator.SetBool(GameConstants.Hurt, false));
+    }
+
+    /// <summary>
+    /// Flip player to correct direction
+    /// </summary>
     private void Flip()
     {
         // Turn right
@@ -74,27 +113,27 @@ public class PlayerMoveController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Check if player is grounded (on the ground)
+    /// </summary>
+    /// <returns></returns>
     private bool IsGrounded()
     {
         return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
     }
 
+    /// <summary>
+    /// Set movement animations (run, jump) for player
+    /// </summary>
+    /// <param name="x"></param>
+    /// <param name="y"></param>
     private void SetAnimation(float x, float y)
     {
         if (x < 0) x *= -1;
-        animator.SetFloat("velocityX", x);
-        animator.SetFloat("velocityY", y);
-        animator.SetBool("grounded", IsGrounded());
+        animator.SetFloat(GameConstants.VelocityX, x);
+        animator.SetFloat(GameConstants.VelocityY, y);
+        animator.SetBool(GameConstants.Grounded, IsGrounded());
     }
 
-    public void SetMovable(bool isMovable)
-    {
-        _isMovable = isMovable;
-    }
-
-    public void PlayerHurt()
-    {
-        animator.SetBool("hurt", true);
-        animator.SetBool("hurt", false);
-    }
+    #endregion
 }
