@@ -23,17 +23,17 @@ public class DeadzoneCamera : MonoBehaviour
         _currentVelocity = Vector3.zero;
 
         _camera = GetComponent<Camera>();
-        if(!_camera.orthographic)
+        if (!_camera.orthographic)
         {
-            Debug.LogError("deadzone script require an orthographic camera!");
+            Debug.LogError("Dead-zone script require an orthographic camera!");
             Destroy(this);
         }
     }
 
     public void Update()
     {
-        float localX = target.transform.position.x - transform.position.x;
-        float localY = target.transform.position.y - transform.position.y;
+        var localX = target.transform.position.x - transform.position.x;
+        var localY = target.transform.position.y - transform.position.y;
 
         if (localX < deadzone.xMin)
         {
@@ -53,7 +53,7 @@ public class DeadzoneCamera : MonoBehaviour
             smoothPos.y += localY - deadzone.yMax;
         }
 
-        Rect camWorldRect = new Rect();
+        var camWorldRect = new Rect();
         camWorldRect.min = new Vector2(smoothPos.x - _camera.aspect * _camera.orthographicSize, smoothPos.y - _camera.orthographicSize);
         camWorldRect.max = new Vector2(smoothPos.x + _camera.aspect * _camera.orthographicSize, smoothPos.y + _camera.orthographicSize);
 

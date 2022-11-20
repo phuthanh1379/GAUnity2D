@@ -91,7 +91,10 @@ public class PlayerMoveController : MonoBehaviour
     public void PlayerHurt()
     {
         animator.SetBool(GameConstants.Hurt, true);
-        var tween = transform.DOScale(transform.localScale * 1.1f, 0.5f);
+        var tween = 
+            transform.DOScale(transform.localScale * 1.01f, 0.5f)
+                .Play()
+            ;
         tween.OnComplete(() => animator.SetBool(GameConstants.Hurt, false));
     }
 

@@ -1,38 +1,38 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 
-public class SimpleAIPatrol : MonoBehaviour
+namespace GameLogic
 {
-    public float startX;
-    public float endX;
-    public float duration;
-
-    private Sequence _sequence;
-    
-    private void Awake()
+    public class SimpleAIPatrol : MonoBehaviour
     {
-        _sequence = DOTween.Sequence();
+        public float startX;
+        public float endX;
+        public float duration;
 
-        _sequence
-            .Append(
-                transform.DOLocalMoveX(endX, duration)
-                    .OnComplete(() =>
-                    {
-                        transform.DOScaleX(-0.2f, 0f);
-                    })
+        private Sequence _sequence;
+    
+        private void Awake()
+        {
+            _sequence = DOTween.Sequence();
+
+            _sequence
+                .Append(
+                    transform.DOLocalMoveX(endX, duration)
+                        .OnComplete(() =>
+                        {
+                            transform.DOScaleX(-0.2f, 0f);
+                        })
                 )
-            .Append(
-                transform.DOLocalMoveX(startX, duration)
-                    .OnComplete(() =>
+                .Append(
+                    transform.DOLocalMoveX(startX, duration)
+                        .OnComplete(() =>
                         {
                             transform.DOScaleX(0.2f, 0f);
                         })
                 )
-            .SetLoops(-1)
-            .Play()
-            ;
+                .SetLoops(-1)
+                .Play()
+                ;
+        }
     }
 }

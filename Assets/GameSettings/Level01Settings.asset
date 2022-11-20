@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d59a5bb0df9e58c4bacb3ab72b0a2d49, type: 3}
+  m_Name: Level01Settings
+  m_EditorClassIdentifier: 
+  minPoint: -10
+  maxPoint: 10
+  obstacleSettingsList:
+  - id: 0
+    basePrefab: {fileID: 3369927618668853074, guid: e4e78fa1ba0d27c4a840d810139ecc6a, type: 3}
+    basePosition: {x: -1.62, y: 3.5, z: 0}
+    isMovable: 1
+    duration: 1
+    startY: 3.5
+    endY: 4.5
+    easeType: 1
+    scoringDuration: 0.35
+    scoringEaseType: 5
+  - id: 1
+    basePrefab: {fileID: 3369927618668853074, guid: e4e78fa1ba0d27c4a840d810139ecc6a, type: 3}
+    basePosition: {x: 2.69, y: 6.55, z: 0}
+    isMovable: 1
+    duration: 1
+    startY: 6.55
+    endY: 7.55
+    easeType: 1
+    scoringDuration: 0.35
+    scoringEaseType: 5
+  - id: 2
+    basePrefab: {fileID: 3369927618668853074, guid: e4e78fa1ba0d27c4a840d810139ecc6a, type: 3}
+    basePosition: {x: 5.29, y: 3.52, z: 0}
+    isMovable: 1
+    duration: 1
+    startY: 3.52
+    endY: 4.52
+    easeType: 1
+    scoringDuration: 0.35
+    scoringEaseType: 5
+  - id: 3
+    basePrefab: {fileID: 3369927618668853074, guid: e4e78fa1ba0d27c4a840d810139ecc6a, type: 3}
+    basePosition: {x: 7.5, y: -3.5, z: 0}
+    isMovable: 1
+    duration: 1
+    startY: -3.5
+    endY: -2.5
+    easeType: 1
+    scoringDuration: 0.35
+    scoringEaseType: 5
+  - id: 4
+    basePrefab: {fileID: 3369927618668853074, guid: e4e78fa1ba0d27c4a840d810139ecc6a, type: 3}
+    basePosition: {x: -4.5, y: -1.5, z: 0}
+    isMovable: 1
+    duration: 1
+    startY: -1.5
+    endY: -0.5
+    easeType: 1
+    scoringDuration: 0.35
+    scoringEaseType: 5
+  - id: 5
+    basePrefab: {fileID: 3369927618668853074, guid: e4e78fa1ba0d27c4a840d810139ecc6a, type: 3}
+    basePosition: {x: -7.4, y: -5.5, z: 0}
+    isMovable: 1
+    duration: 1
+    startY: -5.5
+    endY: -4.5
+    easeType: 1
+    scoringDuration: 0.35
+    scoringEaseType: 5

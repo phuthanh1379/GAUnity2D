@@ -12,5 +12,9 @@ namespace Common
         public static readonly int VelocityY = Animator.StringToHash("velocityY");
         public static readonly int Grounded = Animator.StringToHash("grounded");
         public static readonly int Hurt = Animator.StringToHash("hurt");
+        
+        // Scenes
+        public static readonly string SceneMenu = "MenuScene";
+        public static readonly string SceneMainGame = "MainGameScene";
     }
 }
