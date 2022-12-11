@@ -11,7 +11,7 @@ namespace GameLogic
     {
         #region Variables
 
-        [Header("Managers")] 
+        [Header("Managers")]
         [SerializeField] private LevelManager levelManager;
         
         [Header("In-game UI")]
@@ -32,7 +32,7 @@ namespace GameLogic
         [Header("Player scripts")]
         [SerializeField] private PlayerProfile playerProfile;
         [SerializeField] private PlayerMoveController playerMoveController;
-    
+
         // Private
         private bool _isPause;
         private bool _isGameOver;
@@ -74,7 +74,7 @@ namespace GameLogic
         #endregion
 
         #region Button Methods
-
+        
         public void RestartGame()
         {
             Init();
@@ -92,7 +92,7 @@ namespace GameLogic
         /// <summary>
         /// Event to call when player scores
         /// </summary>
-        /// <param name="score"></param>
+        /// <param name="score">Player's score input</param>
         private void OnPlayerScoring(int score)
         {
             scoreText.text = score.ToString();
@@ -111,7 +111,7 @@ namespace GameLogic
             Debug.Log("End level!");
             EndGame();
         }
-        
+
         #endregion
 
         #region Methods
