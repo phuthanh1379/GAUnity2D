@@ -37,7 +37,7 @@ namespace Items
             foreach (var item in items)
             {
                 var i = Instantiate(inventoryItem, itemContent);
-                i.GetComponent<InventoryItemController>().SetItemData(item.itemName, item.itemSprite);
+                i.GetComponent<InventoryItemController>().SetItemData(item);
             }
         }
     }

@@ -9,6 +9,7 @@ namespace ScriptableObjects
     {
         public int id;
         public string itemName;
+        public string description;
         public int itemValue;
         public Sprite itemSprite;
     }
