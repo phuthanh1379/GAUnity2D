@@ -24916,7 +24916,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2131906171
 RectTransform:
   m_ObjectHideFlags: 0
@@ -25076,6 +25076,34 @@ PrefabInstance:
     - target: {fileID: 4512542644176519337, guid: b0c5b78925e2b944ea65b4a3aef28409, type: 3}
       propertyPath: m_Name
       value: PlayerDemo
+      objectReference: {fileID: 0}
+    - target: {fileID: 4512542644176519337, guid: b0c5b78925e2b944ea65b4a3aef28409, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6441316311596196421, guid: b0c5b78925e2b944ea65b4a3aef28409, type: 3}
+      propertyPath: yWallForce
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6441316311596196421, guid: b0c5b78925e2b944ea65b4a3aef28409, type: 3}
+      propertyPath: baseScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6441316311596196421, guid: b0c5b78925e2b944ea65b4a3aef28409, type: 3}
+      propertyPath: baseScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6441316311596196421, guid: b0c5b78925e2b944ea65b4a3aef28409, type: 3}
+      propertyPath: baseScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6441316311596196421, guid: b0c5b78925e2b944ea65b4a3aef28409, type: 3}
+      propertyPath: checkRadius
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6441316311596196421, guid: b0c5b78925e2b944ea65b4a3aef28409, type: 3}
+      propertyPath: wallSlidingSpeed
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0c5b78925e2b944ea65b4a3aef28409, type: 3}

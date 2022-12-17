@@ -1,3 +1,4 @@
+using System;
 using Common;
 using DG.Tweening;
 using UnityEngine;
@@ -20,7 +21,21 @@ public class PlayerMoveController : MonoBehaviour
     [Tooltip("Player's movement speed")] 
     [SerializeField] private float speed = 8f;
     [SerializeField] private float jumpPower = 16f;
-    
+    [SerializeField] private float checkRadius = 0.2f;
+    [SerializeField] private Vector3 baseScale;
+
+    [Header("Wall Sliding")] 
+    [SerializeField] private Transform frontCheck;
+    [SerializeField] private float wallSlidingSpeed;
+    private bool _isTouchingFront;
+    private bool _isWallSliding;
+
+    [Header("Wall Jumping")] 
+    [SerializeField] private float xWallForce;
+    [SerializeField] private float yWallForce;
+    [SerializeField] private float wallJumpTime;
+    private bool _isWallJumping;
+
     // Private
     private float _horizontal; // horizontal movement input
     private bool _isMovable;
@@ -29,6 +44,12 @@ public class PlayerMoveController : MonoBehaviour
     #endregion
 
     #region Unity Methods
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(groundCheck.position, checkRadius);
+        Gizmos.DrawWireSphere(frontCheck.position, checkRadius);
+    }
 
     private void Update()
     {
@@ -50,6 +71,30 @@ public class PlayerMoveController : MonoBehaviour
             rb2d.velocity = new Vector2(rb2d.velocity.x, rb2d.velocity.y * 0.5f);
         }
         
+        // Wall sliding
+        _isTouchingFront = Physics2D.OverlapCircle(frontCheck.position, checkRadius, groundLayer);
+        if (_isTouchingFront && !IsGrounded() && _horizontal != 0)
+        {
+            _isWallSliding = true;
+        }
+        else
+        {
+            _isWallSliding = false;
+        }
+
+        if (Input.GetButtonDown("Jump") && _isWallSliding)
+        {
+            _isWallJumping = true;
+            Invoke(nameof(SetWallJumpingToFalse), wallJumpTime);
+        }
+
+        if (_isWallJumping)
+        {
+            rb2d.velocity = new Vector2(xWallForce * -_horizontal, yWallForce);
+        }
+
+        
+
         // Set animation
         SetAnimation(rb2d.velocity.x, rb2d.velocity.y);
         
@@ -61,6 +106,12 @@ public class PlayerMoveController : MonoBehaviour
     {
         // Update player's velocity
         rb2d.velocity = new Vector2(_horizontal * speed, rb2d.velocity.y);
+        
+        if (_isWallSliding)
+        {
+            rb2d.velocity = new Vector2(rb2d.velocity.x,
+                Mathf.Clamp(rb2d.velocity.y, -wallSlidingSpeed, float.MaxValue));
+        }
     }
 
     #endregion
@@ -74,6 +125,11 @@ public class PlayerMoveController : MonoBehaviour
     {
         _isMovable = true;
         transform.position = InitialPosition;
+    }
+
+    private void SetWallJumpingToFalse()
+    {
+        _isWallJumping = false;
     }
     
     /// <summary>
@@ -91,11 +147,17 @@ public class PlayerMoveController : MonoBehaviour
     public void PlayerHurt()
     {
         animator.SetBool(GameConstants.Hurt, true);
-        var tween = 
-            transform.DOScale(transform.localScale * 1.01f, 0.5f)
-                .Play()
-            ;
-        tween.OnComplete(() => animator.SetBool(GameConstants.Hurt, false));
+        Invoke(nameof(SetPlayerNotHurt), 0.5f);
+        // var tween = 
+        //     transform.DOScale(transform.localScale * 1.01f, 0.5f)
+        //         .Play()
+        //     ;
+        // tween.OnComplete(() => animator.SetBool(GameConstants.Hurt, false));
+    }
+
+    public void SetPlayerNotHurt()
+    {
+        animator.SetBool(GameConstants.Hurt, false);
     }
 
     /// <summary>
@@ -103,16 +165,16 @@ public class PlayerMoveController : MonoBehaviour
     /// </summary>
     private void Flip()
     {
-        // Turn right
-        if (_horizontal > 0)
+        switch (_horizontal)
         {
-            transform.localScale = Vector3.one;
-        }
-
-        // Turn left
-        if (_horizontal < 0)
-        {
-            transform.localScale = new Vector3(-1f, 1f, 1f);
+            // Turn right
+            case > 0:
+                transform.localScale = baseScale;
+                break;
+            // Turn left
+            case < 0:
+                transform.localScale = new Vector3(-1 * baseScale.x, baseScale.y, baseScale.z);
+                break;
         }
     }
 
@@ -122,9 +184,9 @@ public class PlayerMoveController : MonoBehaviour
     /// <returns></returns>
     private bool IsGrounded()
     {
-        return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
+        return Physics2D.OverlapCircle(groundCheck.position, checkRadius, groundLayer);
     }
-
+    
     /// <summary>
     /// Set movement animations (run, jump) for player
     /// </summary>
@@ -135,6 +197,7 @@ public class PlayerMoveController : MonoBehaviour
         if (x < 0) x *= -1;
         animator.SetFloat(GameConstants.VelocityX, x);
         animator.SetFloat(GameConstants.VelocityY, y);
+        
         animator.SetBool(GameConstants.Grounded, IsGrounded());
     }
 

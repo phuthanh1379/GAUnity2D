@@ -8,10 +8,12 @@ namespace Common
     public static class GameConstants
     {
         // Animator parameters
-        public static readonly int VelocityX = Animator.StringToHash("velocityX");
-        public static readonly int VelocityY = Animator.StringToHash("velocityY");
-        public static readonly int Grounded = Animator.StringToHash("grounded");
-        public static readonly int Hurt = Animator.StringToHash("hurt");
+        public static readonly int VelocityX = Animator.StringToHash("VelocityX");
+        public static readonly int VelocityY = Animator.StringToHash("VelocityY");
+        public static readonly int Grounded = Animator.StringToHash("Grounded");
+        public static readonly int Hurt = Animator.StringToHash("Hurt");
+        public static readonly int Jump = Animator.StringToHash("Jump");
+        public static readonly int Attack = Animator.StringToHash("Attack");
         
         // Scenes
         public static readonly string SceneMenu = "MenuScene";
