@@ -141,7 +141,9 @@ public class Board : MonoBehaviour
             .Join(img2Transform.DOMove(img1Transform.position, tweenDuration))
             ;
 
-        await sequence.Play()
+        await sequence
+            .SetAutoKill(true)
+            .Play()
             .AsyncWaitForCompletion();
         
         // After sequence is completed, swap 2 cells' images
@@ -196,6 +198,7 @@ public class Board : MonoBehaviour
                 }
 
                 await deflateSequence
+                    .SetAutoKill(true)
                     .Play()
                     .AsyncWaitForCompletion();
                 
@@ -214,6 +217,7 @@ public class Board : MonoBehaviour
                 }
 
                 await inflateSequence
+                    .SetAutoKill(true)
                     .Play()
                     .AsyncWaitForCompletion();
 

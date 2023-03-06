@@ -90,6 +90,7 @@ ScriptedImporter:
     tessellationDetail: 0
     parentGroupIndex: -1
     uvTransform: {x: 0, y: 0}
+    spritePosition: {x: 0, y: 0}
   mosaicSpriteImportData: []
   rigSpriteImportData:
   - name: Head
@@ -724,7 +725,8 @@ ScriptedImporter:
     - {x: 52, y: 53}
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 822, y: -407}
+    uvTransform: {x: 822, y: 4}
+    spritePosition: {x: 0, y: 411}
   - name: Body
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -1264,7 +1266,8 @@ ScriptedImporter:
     - {x: 40, y: 41}
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: -48, y: -109}
+    uvTransform: {x: 4, y: 4}
+    spritePosition: {x: 52, y: 113}
   - name: LeftLeg
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -1662,7 +1665,8 @@ ScriptedImporter:
     - {x: 28, y: 29}
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 542, y: 1561}
+    uvTransform: {x: 822, y: 1672}
+    spritePosition: {x: 280, y: 111}
   - name: RightLeg
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -2080,7 +2084,8 @@ ScriptedImporter:
     - {x: 28, y: 29}
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 821, y: 816}
+    uvTransform: {x: 822, y: 914}
+    spritePosition: {x: 1, y: 98}
   - name: RightArm
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -2534,7 +2539,8 @@ ScriptedImporter:
     - {x: 24, y: 25}
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: -307, y: 2352}
+    uvTransform: {x: 4, y: 2413}
+    spritePosition: {x: 311, y: 61}
   - name: LeftArm
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -2988,7 +2994,8 @@ ScriptedImporter:
     - {x: 24, y: 25}
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: -76, y: 1092}
+    uvTransform: {x: 4, y: 1102}
+    spritePosition: {x: 80, y: 10}
   characterData:
     bones:
     - name: bone_1

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b9384d4a7a14a67b84859179f1f86cb, type: 3}
+  m_Name: Topaz
+  m_EditorClassIdentifier: 
+  id: 4
+  gemName: Topaz
+  sprites:
+  - {fileID: 21300000, guid: 50f397ecca250bc4683044677dacfbbf, type: 3}
+  - {fileID: 21300000, guid: efb4c21dc588fc2418fdf38b8f518493, type: 3}
+  - {fileID: 21300000, guid: 10a903a36ce0c0343997f34fdb2b091d, type: 3}
+  - {fileID: 21300000, guid: 6aacd6fb02b467144b95d3ab3d5f6f3f, type: 3}
+  - {fileID: 21300000, guid: ad2ac2e38cea5494e8523e2595573b41, type: 3}

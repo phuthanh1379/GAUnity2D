@@ -23842,6 +23842,7 @@ GameObject:
   - component: {fileID: 1701472845}
   - component: {fileID: 1701472846}
   - component: {fileID: 1701472847}
+  - component: {fileID: 1701472848}
   m_Layer: 7
   m_Name: EnemyBandit
   m_TagString: Enemy
@@ -23909,7 +23910,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1701472842}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.48, y: 2.941, z: 0}
+  m_LocalPosition: {x: -9.04, y: 2.941, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -23968,6 +23969,21 @@ MonoBehaviour:
   animator: {fileID: 1701472846}
   collider: {fileID: 1701472845}
   healthBar: {fileID: 708616622}
+--- !u!114 &1701472848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1701472842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21aa15ac314b7c0439f19087195970b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startX: -4
+  endX: -9
+  duration: 3
 --- !u!61 &1701502909 stripped
 BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 61928098477451512, guid: cefdc9cb5c29254498f8928fb68d283c, type: 3}

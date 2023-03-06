@@ -73,7 +73,7 @@ namespace GameLogic
                 .SetLoops(-1)
                 .SetAutoKill(false)
                 .Play();
-            
+
             // Scoring sequence
             _scoringSequence = DOTween.Sequence();
             _scoringSequence

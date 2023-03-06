@@ -9,10 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d1514134bc4fbd41bb739b1b9a49231, type: 3}
-  m_Name: Rock
+  m_Script: {fileID: 11500000, guid: e91409a6e647c0b4c80a050ee9e0a2fa, type: 3}
+  m_Name: PlayerProfileData
   m_EditorClassIdentifier: 
-  m_DefaultSprite: {fileID: 0}
-  m_DefaultGameObject: {fileID: 0}
-  m_DefaultColliderType: 1
-  m_TilingRules: []
+  playerName: 
+  playerAge: 0
+  playerScore: 0
+  sceneIndexes: 
+  example:
+    TotalGold: 0
+    MaxScore: 0
+    LastName: 

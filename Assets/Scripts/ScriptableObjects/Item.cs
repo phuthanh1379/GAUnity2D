@@ -14,4 +14,3 @@ namespace ScriptableObjects
         public Sprite itemSprite;
     }
 }
-

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b9384d4a7a14a67b84859179f1f86cb, type: 3}
+  m_Name: Emerald
+  m_EditorClassIdentifier: 
+  id: 1
+  gemName: Emerald
+  sprites:
+  - {fileID: 21300000, guid: 6ba34f794f7ff7341aefaff5f99c5fd3, type: 3}
+  - {fileID: 21300000, guid: 8efc8ff14de255549a79e7826bfc5c6e, type: 3}
+  - {fileID: 21300000, guid: 082c806a9578e7b489e67efb7d476c01, type: 3}
+  - {fileID: 21300000, guid: 205e4e22d37c1424d8251ecf6fde368b, type: 3}
+  - {fileID: 21300000, guid: c9257e09acc416143b2f8770c78a7274, type: 3}

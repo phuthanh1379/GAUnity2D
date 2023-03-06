@@ -18,5 +18,8 @@ namespace Common
         // Scenes
         public static readonly string SceneMenu = "MenuScene";
         public static readonly string SceneMainGame = "MainGameScene";
+
+        // PlayerPrefs keys
+        public static readonly string CurrentSceneIndex = "CurrentSceneIndex";
     }
 }

@@ -1,6 +1,4 @@
-using System;
 using Common;
-using DG.Tweening;
 using UnityEngine;
 
 /// <summary>
@@ -73,7 +71,7 @@ public class PlayerMoveController : MonoBehaviour
         
         // Wall sliding
         _isTouchingFront = Physics2D.OverlapCircle(frontCheck.position, checkRadius, groundLayer);
-        if (_isTouchingFront && !IsGrounded() && _horizontal != 0)
+        if (_isTouchingFront && !IsGrounded() && _horizontal == 0)
         {
             _isWallSliding = true;
         }
@@ -92,8 +90,6 @@ public class PlayerMoveController : MonoBehaviour
         {
             rb2d.velocity = new Vector2(xWallForce * -_horizontal, yWallForce);
         }
-
-        
 
         // Set animation
         SetAnimation(rb2d.velocity.x, rb2d.velocity.y);
@@ -139,6 +135,7 @@ public class PlayerMoveController : MonoBehaviour
     public void SetMovable(bool isMovable)
     {
         _isMovable = isMovable;
+        
     }
 
     /// <summary>

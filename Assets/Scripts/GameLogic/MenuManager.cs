@@ -1,7 +1,6 @@
-using System;
 using Common;
+using DG.Tweening;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace GameLogic
@@ -11,6 +10,15 @@ namespace GameLogic
         [SerializeField] private Button playButton;
         [SerializeField] private Button aboutButton;
         [SerializeField] private Button optionButton;
+
+        [SerializeField] private SpriteRenderer renderer;
+
+        private void Start()
+        {
+            //SharedData.Instance.data = 100;
+            Debug.Log(PlayerPrefs.GetString("CurrentScene"));
+            Debug.Log(PlayerPrefs.GetInt(GameConstants.CurrentSceneIndex));
+        }
 
         private void OnEnable()
         {
@@ -28,12 +36,12 @@ namespace GameLogic
 
         private void OnClickPlay()
         {
-            SceneManager.LoadScene(GameConstants.SceneMainGame);
+            SceneController.Instance.ClickLoadScene(GameConstants.SceneMainGame);
         }
 
         private void OnClickOption()
         {
-            
+            renderer.DOFade(1f, 1f).Play();
         }
 
         private void OnClickAbout()

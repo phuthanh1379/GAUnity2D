@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b9384d4a7a14a67b84859179f1f86cb, type: 3}
+  m_Name: Ruby
+  m_EditorClassIdentifier: 
+  id: 2
+  gemName: Ruby
+  sprites:
+  - {fileID: 21300000, guid: 05f0f39c66dd0874fbbb274c44ed847b, type: 3}
+  - {fileID: 21300000, guid: f2c2b9d2413a5c34185819c99e7fb925, type: 3}
+  - {fileID: 21300000, guid: d0b324d6fec258d48a26f3a0a1d70d64, type: 3}
+  - {fileID: 21300000, guid: 98947e0d576dcf6419027ce0c2692346, type: 3}
+  - {fileID: 21300000, guid: b3ea50ea8a703094ea77f70b105167a3, type: 3}
