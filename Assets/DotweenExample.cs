@@ -8,6 +8,7 @@ public class DotweenExample : MonoBehaviour
     [SerializeField] private Ease easeType;
 
     private Sequence _sequence;
+
     private void Awake()
     {
         _sequence = DOTween.Sequence();
@@ -35,6 +36,7 @@ public class DotweenExample : MonoBehaviour
     private void MyFunction()
     {
         // Do something
+        Debug.Log("Do something");
     }
 
     public void OnclickButton()
