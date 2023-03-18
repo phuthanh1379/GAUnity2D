@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerAttackController : MonoBehaviour
@@ -11,12 +8,21 @@ public class PlayerAttackController : MonoBehaviour
     [SerializeField] private LayerMask enemyLayer;
     [SerializeField] private Animator animator;
     [SerializeField] private int attackDamage;
+    private bool _isAttackable = true;
 
     [SerializeField] private GameObject projectile;
     [SerializeField] private float projectileSpeed;
     [SerializeField] private float shootingRate;
     private float _currentCounter = 0f;
-    
+
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip attackSound;
+
+    [Header("Special")]
+    [SerializeField] private GameObject specialProjectile;
+    private float currentHoldTime = 0f;
+    private const float TimeToHold = 2f;
+
     private void OnDrawGizmosSelected()
     {
         if (attackPoint == null)
@@ -46,16 +52,55 @@ public class PlayerAttackController : MonoBehaviour
                 _currentCounter = shootingRate;
             }
         }
+
+        if (Input.GetKey(KeyCode.R))
+            SpecialAttack(false);
+
+        if (Input.GetKeyUp(KeyCode.R))
+            SpecialAttack(true);
+
+        if (Input.GetKeyDown(KeyCode.Alpha1) && Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            Debug.Log("True!");
+        }
+    }
+
+    private void SpecialAttack(bool isEnded)
+    {
+        if (isEnded)
+        {
+            if (currentHoldTime >= TimeToHold)
+            {
+                DoSpecialAttack();
+                currentHoldTime = 0f;
+            }
+        }
+        else
+        {
+            currentHoldTime += Time.deltaTime;
+        }
+        Debug.Log($"{currentHoldTime}");
     }
     
+    private void DoSpecialAttack()
+    {
+        var p = Instantiate(specialProjectile, attackPoint.position, attackPoint.rotation);
+        p.GetComponent<BasicProjectileController>()
+            .Init(attackDamage * 3, projectileSpeed, transform.localScale.x);
+    }
+
     private void Attack()
     {
+        if (!_isAttackable) return;
         animator.SetTrigger("Attack");
+        _isAttackable = false;
     }
 
     private void AttackHit()
     {
         Debug.Log("Attack Hit");
+        audioSource.clip = attackSound;
+        audioSource.Play();
         var hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
         foreach (var enemy in hitEnemies)
         {
@@ -67,5 +112,10 @@ public class PlayerAttackController : MonoBehaviour
     {
         var p = Instantiate(projectile, attackPoint.position, attackPoint.rotation);
         p.GetComponent<BasicProjectileController>().Init(attackDamage, projectileSpeed, transform.localScale.x);
+    }
+
+    private void AttackReady()
+    {
+        _isAttackable = true;
     }
 }

@@ -11,12 +11,19 @@ public class EnemyPatrol : MonoBehaviour
     public float endX;
     public float duration;
 
+    private Sequence _sequence;
+
+    public void StopPatrol()
+    {
+        _sequence.Kill();
+    }
+
     private void Start()
     {
         transform.position = new Vector3(startX, transform.position.y, transform.position.z);
-        var sequence = DOTween.Sequence();
+        _sequence = DOTween.Sequence();
 
-        sequence
+        _sequence
             .Append(transform
                 .DOMoveX(endX, duration)
                 .OnComplete(Flip)
@@ -27,14 +34,8 @@ public class EnemyPatrol : MonoBehaviour
             )
             ;
 
-        sequence.SetLoops(-1)
+        _sequence.SetLoops(-1)
             .Play();
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-            Flip();
     }
 
     private void Flip()

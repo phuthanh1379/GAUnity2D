@@ -1,6 +1,7 @@
 using System;
 using ScriptableObjects;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// Script to store and handle player's stats
@@ -10,6 +11,8 @@ public class PlayerProfile : MonoBehaviour
     #region Variables
 
     [SerializeField] private PlayerSettings playerSettings;
+    [SerializeField] private Slider healthBar;
+    [SerializeField] private Animator animator;
     
     // Settings
     public int Score { get; private set; }
@@ -23,16 +26,6 @@ public class PlayerProfile : MonoBehaviour
 
     #endregion
 
-    #region Unity Methods
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Backspace))
-            PlayerHurt(1);
-    }
-
-    #endregion
-
     #region Methods
 
     /// <summary>
@@ -43,6 +36,10 @@ public class PlayerProfile : MonoBehaviour
         // Get info from PlayerSettings scriptable-object
         Score = playerSettings.initialScore;
         HitPoint = playerSettings.initialHp;
+
+        healthBar.maxValue = HitPoint;
+        healthBar.value = HitPoint;
+
         PlayerName = playerSettings.playerName;
     }
 
@@ -70,10 +67,17 @@ public class PlayerProfile : MonoBehaviour
     /// Player takes damage
     /// </summary>
     /// <param name="dmg"></param>
-    private void PlayerHurt(int dmg)
+    public void PlayerHurt(int dmg)
     {
+        Debug.Log("Hurt");
+        //animator.SetTrigger("Hurt");
         HitPoint -= dmg;
-        PlayerIsHurt?.Invoke();
+        healthBar.value -= dmg;
+        if (HitPoint <= 0)
+        {
+            //animator.SetTrigger("Die");
+            Debug.Log("Die");
+        }
     }
 
     #endregion

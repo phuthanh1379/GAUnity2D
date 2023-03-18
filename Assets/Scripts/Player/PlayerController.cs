@@ -3,26 +3,20 @@
 /// <summary>
 /// Script to control other player's scripts
 /// </summary>
+[RequireComponent(typeof(PlayerMoveController), typeof(PlayerProfile))]
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private PlayerMoveController playerMoveController;
     [SerializeField] private PlayerProfile playerProfile;
 
-    private void OnEnable()
+    private void Awake()
     {
-        playerProfile.PlayerIsHurt += OnPlayerIsHurt;
+        //Init();
     }
 
-    private void OnDisable()
+    public void Init()
     {
-        playerProfile.PlayerIsHurt -= OnPlayerIsHurt;
-    }
-
-    /// <summary>
-    /// Event to call when player takes damage
-    /// </summary>
-    private void OnPlayerIsHurt()
-    {
-        playerMoveController.PlayerHurt();
+        playerProfile.Init();
+        playerMoveController.Init();
     }
 }

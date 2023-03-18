@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BasicProjectileController : MonoBehaviour
 {
@@ -16,6 +16,7 @@ public class BasicProjectileController : MonoBehaviour
     {
         if (other.collider.CompareTag("Enemy"))
         {
+            // Tạo hiệu ứng
             Instantiate(projectileImpactFx, transform.position, transform.rotation);
             other.collider.GetComponent<Enemy>().TakeDamage(_damage);
             Destroy(gameObject);

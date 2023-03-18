@@ -49,7 +49,6 @@ ScriptedImporter:
     flipbookRows: 0
     flipbookColumns: 0
     ignorePngGamma: 0
-    cookieMode: 0
     filterMode: 1
     aniso: 1
     mipBias: 0
@@ -91,7 +90,6 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-    spritePosition: {x: 0, y: 0}
   mosaicSpriteImportData: []
   rigSpriteImportData:
   - name: Head
@@ -617,8 +615,7 @@ ScriptedImporter:
     - {x: 42, y: 43}
     - {x: 43, y: 44}
     tessellationDetail: 0
-    uvTransform: {x: 822, y: 4}
-    spritePosition: {x: 0, y: 411}
+    uvTransform: {x: 822, y: -407}
   - name: Body
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -931,8 +928,7 @@ ScriptedImporter:
     - {x: 22, y: 23}
     - {x: 23, y: 24}
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 4}
-    spritePosition: {x: 52, y: 113}
+    uvTransform: {x: -48, y: -109}
   - name: LeftLeg
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -1179,8 +1175,7 @@ ScriptedImporter:
     - {x: 16, y: 17}
     - {x: 17, y: 18}
     tessellationDetail: 0
-    uvTransform: {x: 822, y: 1672}
-    spritePosition: {x: 280, y: 111}
+    uvTransform: {x: 542, y: 1561}
   - name: RightLeg
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -1427,8 +1422,7 @@ ScriptedImporter:
     - {x: 16, y: 17}
     - {x: 17, y: 18}
     tessellationDetail: 0
-    uvTransform: {x: 822, y: 914}
-    spritePosition: {x: 1, y: 98}
+    uvTransform: {x: 821, y: 816}
   - name: RightArm
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -1631,8 +1625,7 @@ ScriptedImporter:
     - {x: 12, y: 13}
     - {x: 13, y: 14}
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 2413}
-    spritePosition: {x: 311, y: 61}
+    uvTransform: {x: -307, y: 2352}
   - name: LeftArm
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -1857,8 +1850,7 @@ ScriptedImporter:
     - {x: 14, y: 15}
     - {x: 15, y: 16}
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 1102}
-    spritePosition: {x: 80, y: 10}
+    uvTransform: {x: -76, y: 1092}
   characterData:
     bones:
     - name: bone_1

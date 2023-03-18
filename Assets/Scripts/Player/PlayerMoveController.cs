@@ -37,7 +37,7 @@ public class PlayerMoveController : MonoBehaviour
     // Private
     private float _horizontal; // horizontal movement input
     private bool _isMovable;
-    private static readonly Vector3 InitialPosition = new(-7f, 5f, 1f); // player's initial position
+    private static readonly Vector3 InitialPosition = new(0.5f, 5f, 1f); // player's initial position
 
     #endregion
 
@@ -121,6 +121,11 @@ public class PlayerMoveController : MonoBehaviour
     {
         _isMovable = true;
         transform.position = InitialPosition;
+
+        foreach (var param in animator.parameters)
+        {
+            Debug.Log(param.name);
+        }
     }
 
     private void SetWallJumpingToFalse()
@@ -136,25 +141,6 @@ public class PlayerMoveController : MonoBehaviour
     {
         _isMovable = isMovable;
         
-    }
-
-    /// <summary>
-    /// Animation to run when player is hurt
-    /// </summary>
-    public void PlayerHurt()
-    {
-        animator.SetBool(GameConstants.Hurt, true);
-        Invoke(nameof(SetPlayerNotHurt), 0.5f);
-        // var tween = 
-        //     transform.DOScale(transform.localScale * 1.01f, 0.5f)
-        //         .Play()
-        //     ;
-        // tween.OnComplete(() => animator.SetBool(GameConstants.Hurt, false));
-    }
-
-    public void SetPlayerNotHurt()
-    {
-        animator.SetBool(GameConstants.Hurt, false);
     }
 
     /// <summary>
@@ -193,7 +179,7 @@ public class PlayerMoveController : MonoBehaviour
     {
         if (x < 0) x *= -1;
         animator.SetFloat(GameConstants.VelocityX, x);
-        animator.SetFloat(GameConstants.VelocityY, y);
+        // animator.SetFloat(GameConstants.VelocityY, y);
         
         animator.SetBool(GameConstants.Grounded, IsGrounded());
     }
