@@ -122,10 +122,10 @@ public class PlayerMoveController : MonoBehaviour
         _isMovable = true;
         transform.position = InitialPosition;
 
-        foreach (var param in animator.parameters)
-        {
-            Debug.Log(param.name);
-        }
+        // foreach (var param in animator.parameters)
+        // {
+        //     Debug.Log(param.name);
+        // }
     }
 
     private void SetWallJumpingToFalse()
@@ -177,9 +177,13 @@ public class PlayerMoveController : MonoBehaviour
     /// <param name="y"></param>
     private void SetAnimation(float x, float y)
     {
-        if (x < 0) x *= -1;
-        animator.SetFloat(GameConstants.VelocityX, x);
-        // animator.SetFloat(GameConstants.VelocityY, y);
+        if (x > 0.001 || x < -0.001) 
+            animator.SetInteger(GameConstants.AnimState, (int) BanditAnimationState.Run);
+        else
+            animator.SetInteger(GameConstants.AnimState, (int) BanditAnimationState.Idle);
+        
+        if (y > 0)
+            animator.SetTrigger(GameConstants.Jump);
         
         animator.SetBool(GameConstants.Grounded, IsGrounded());
     }

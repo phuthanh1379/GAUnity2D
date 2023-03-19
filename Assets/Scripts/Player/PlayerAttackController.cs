@@ -1,3 +1,4 @@
+using Common;
 using UnityEngine;
 
 public class PlayerAttackController : MonoBehaviour
@@ -23,6 +24,8 @@ public class PlayerAttackController : MonoBehaviour
     private float currentHoldTime = 0f;
     private const float TimeToHold = 2f;
 
+    #region Unity Methods
+    
     private void OnDrawGizmosSelected()
     {
         if (attackPoint == null)
@@ -63,7 +66,16 @@ public class PlayerAttackController : MonoBehaviour
         {
             Debug.Log("True!");
         }
+
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Attack") && !_isAttackable)
+        {
+            _isAttackable = true;
+        }
     }
+    
+    #endregion
+
+    #region Actions
 
     private void SpecialAttack(bool isEnded)
     {
@@ -92,9 +104,19 @@ public class PlayerAttackController : MonoBehaviour
     private void Attack()
     {
         if (!_isAttackable) return;
-        animator.SetTrigger("Attack");
+        animator.SetTrigger(GameConstants.Attack);
         _isAttackable = false;
     }
+
+    private void AttackRange()
+    {
+        var p = Instantiate(projectile, attackPoint.position, attackPoint.rotation);
+        p.GetComponent<BasicProjectileController>().Init(attackDamage, projectileSpeed, transform.localScale.x);
+    }
+    
+    #endregion
+
+    #region Events
 
     private void AttackHit()
     {
@@ -108,14 +130,10 @@ public class PlayerAttackController : MonoBehaviour
         }
     }
 
-    private void AttackRange()
-    {
-        var p = Instantiate(projectile, attackPoint.position, attackPoint.rotation);
-        p.GetComponent<BasicProjectileController>().Init(attackDamage, projectileSpeed, transform.localScale.x);
-    }
-
     private void AttackReady()
     {
         _isAttackable = true;
     }
-}
+
+    #endregion
+ }

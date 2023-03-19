@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour
 {
     private int _hitPoint;
     [SerializeField] private Animator animator;
-    [SerializeField] private Collider2D collider;
+    [SerializeField] private Collider2D collider2d;
     [SerializeField] private Slider healthBar;
 
     [Header("Detect")]
@@ -57,8 +57,7 @@ public class Enemy : MonoBehaviour
         healthBar.value = _hitPoint;
         
         // Set animation
-        Debug.Log($"Set AnimState to {BanditAnimationState.Run}");
-        animator.SetInteger("AnimState", (int) BanditAnimationState.Run);
+        animator.SetInteger(GameConstants.AnimState, (int) BanditAnimationState.Run);
     }
     
     private bool DetectPlayer()
@@ -70,13 +69,13 @@ public class Enemy : MonoBehaviour
     private void Attack()
     {
         if (!_isAttackReady) return;
-        animator.SetTrigger("Attack");
+        animator.SetTrigger(GameConstants.Attack);
         _isAttackReady = false;
     }
 
     public void TakeDamage(int damage)
     {
-        animator.SetTrigger("Hurt");
+        animator.SetTrigger(GameConstants.Hurt);
         _hitPoint -= damage;
         healthBar.value -= damage;
         
@@ -89,8 +88,8 @@ public class Enemy : MonoBehaviour
     private void Die()
     {
         EnemyDead?.Invoke();
-        animator.SetBool("isDead", true);
-        collider.enabled = false;
+        animator.SetTrigger(GameConstants.Death);
+        collider2d.enabled = false;
         enabled = false;
     }
     

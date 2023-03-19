@@ -1,4 +1,5 @@
 using System;
+using Common;
 using ScriptableObjects;
 using UnityEngine;
 using UnityEngine.UI;
@@ -57,7 +58,9 @@ public class PlayerProfile : MonoBehaviour
         
         // If player's hit-point reaches zero, player is dead
         if (HitPoint <= 0)
-            PlayerDead?.Invoke();
+        {
+            Die();
+        }
         
         // Invoke the event to update player's score on UI
         PlayerScoring?.Invoke(Score);
@@ -69,15 +72,20 @@ public class PlayerProfile : MonoBehaviour
     /// <param name="dmg"></param>
     public void PlayerHurt(int dmg)
     {
-        Debug.Log("Hurt");
-        //animator.SetTrigger("Hurt");
+        animator.SetTrigger(GameConstants.Hurt);
         HitPoint -= dmg;
         healthBar.value -= dmg;
+        
         if (HitPoint <= 0)
         {
-            //animator.SetTrigger("Die");
-            Debug.Log("Die");
+            Die();
         }
+    }
+
+    private void Die()
+    {
+        animator.SetTrigger(GameConstants.Death);
+        PlayerDead?.Invoke();
     }
 
     #endregion
