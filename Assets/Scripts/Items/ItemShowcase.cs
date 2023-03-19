@@ -1,9 +1,12 @@
-using System;
+﻿using System;
 using ScriptableObjects;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Hiển thị UI cho (nhiều) item
+/// </summary>
 public class ItemShowcase : MonoBehaviour
 {
     public TMP_Text itemName;

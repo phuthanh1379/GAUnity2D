@@ -73,11 +73,11 @@ public class Enemy : MonoBehaviour
         _isAttackReady = false;
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damageReceived)
     {
         animator.SetTrigger(GameConstants.Hurt);
-        _hitPoint -= damage;
-        healthBar.value -= damage;
+        _hitPoint -= damageReceived;
+        healthBar.value -= damageReceived;
         
         if (_hitPoint <= 0)
         {

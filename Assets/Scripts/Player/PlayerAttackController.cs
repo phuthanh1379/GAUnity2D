@@ -10,6 +10,8 @@ public class PlayerAttackController : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private int attackDamage;
     private bool _isAttackable = true;
+    private float _attackCooldown = 0f;
+    private const float AttackCooldown = 0.5f;
 
     [SerializeField] private GameObject projectile;
     [SerializeField] private float projectileSpeed;
@@ -67,9 +69,12 @@ public class PlayerAttackController : MonoBehaviour
             Debug.Log("True!");
         }
 
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Attack") && !_isAttackable)
+        if (!_isAttackable)
         {
-            _isAttackable = true;
+            if (_attackCooldown <= 0f)
+                AttackReady();
+            else
+                _attackCooldown -= Time.deltaTime;
         }
     }
     
@@ -120,7 +125,6 @@ public class PlayerAttackController : MonoBehaviour
 
     private void AttackHit()
     {
-        Debug.Log("Attack Hit");
         audioSource.clip = attackSound;
         audioSource.Play();
         var hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
@@ -133,6 +137,7 @@ public class PlayerAttackController : MonoBehaviour
     private void AttackReady()
     {
         _isAttackable = true;
+        _attackCooldown = AttackCooldown;
     }
 
     #endregion

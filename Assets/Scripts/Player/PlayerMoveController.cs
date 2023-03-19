@@ -71,7 +71,7 @@ public class PlayerMoveController : MonoBehaviour
         
         // Wall sliding
         _isTouchingFront = Physics2D.OverlapCircle(frontCheck.position, checkRadius, groundLayer);
-        if (_isTouchingFront && !IsGrounded() && _horizontal == 0)
+        if (_isTouchingFront && !IsGrounded() && _horizontal != 0)
         {
             _isWallSliding = true;
         }
