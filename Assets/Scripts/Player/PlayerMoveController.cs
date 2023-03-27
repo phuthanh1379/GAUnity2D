@@ -43,6 +43,18 @@ public class PlayerMoveController : MonoBehaviour
 
     #region Unity Methods
 
+    private void OnEnable()
+    {
+        ConversationManager.Instance.ConversationStart += OnConversationStart;
+        ConversationManager.Instance.ConversationEnd += OnConversationEnd;
+    }
+
+    private void OnDisable()
+    {
+        ConversationManager.Instance.ConversationStart -= OnConversationStart;
+        ConversationManager.Instance.ConversationEnd -= OnConversationEnd;
+    }
+
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(groundCheck.position, checkRadius);
@@ -61,12 +73,14 @@ public class PlayerMoveController : MonoBehaviour
         if (Input.GetButtonDown("Jump") && IsGrounded())
         {
             rb2d.velocity = new Vector2(rb2d.velocity.x, jumpPower);
+            animator.SetTrigger(GameConstants.Jump);
         }
 
         // If player releases jump button while jumping, lower the jump height
         if (Input.GetButtonUp("Jump") && rb2d.velocity.y > 0)
         {
             rb2d.velocity = new Vector2(rb2d.velocity.x, rb2d.velocity.y * 0.5f);
+            animator.SetTrigger(GameConstants.Jump);
         }
         
         // Wall sliding
@@ -92,7 +106,7 @@ public class PlayerMoveController : MonoBehaviour
         }
 
         // Set animation
-        SetAnimation(rb2d.velocity.x, rb2d.velocity.y);
+        SetAnimation(_horizontal);
         
         // Flip player
         Flip();
@@ -140,7 +154,6 @@ public class PlayerMoveController : MonoBehaviour
     public void SetMovable(bool isMovable)
     {
         _isMovable = isMovable;
-        
     }
 
     /// <summary>
@@ -175,17 +188,37 @@ public class PlayerMoveController : MonoBehaviour
     /// </summary>
     /// <param name="x"></param>
     /// <param name="y"></param>
-    private void SetAnimation(float x, float y)
+    private void SetAnimation(float x)
     {
-        if (x > 0.001 || x < -0.001) 
+        if (x > 0.000001 || x < -0.000001) 
             animator.SetInteger(GameConstants.AnimState, (int) BanditAnimationState.Run);
         else
             animator.SetInteger(GameConstants.AnimState, (int) BanditAnimationState.Idle);
         
-        if (y > 0)
-            animator.SetTrigger(GameConstants.Jump);
+        //if (y > 0)
+        //    animator.SetTrigger(GameConstants.Jump);
         
         animator.SetBool(GameConstants.Grounded, IsGrounded());
+    }
+
+    #endregion
+
+    #region Events
+
+    private void OnConversationStart(ConversationData data)
+    {
+        rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
+
+        // Disable player's movement
+        SetMovable(false);
+
+        animator.SetInteger(GameConstants.AnimState, (int)BanditAnimationState.Idle);
+    }
+
+    private void OnConversationEnd()
+    {
+        SetMovable(true);
+        rb2d.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 
     #endregion

@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -193,6 +194,8 @@ namespace GameLogic
             endgameScoreText.text = playerProfile.Score.ToString();
             endgamePlayerNameText.text = playerProfile.PlayerName;
         }
+
+        
 
         #endregion
     }
