@@ -70,7 +70,8 @@ namespace GameLogic
 
         private void Start()
         {
-            bgmAudioSource.Play();
+            if (bgmAudioSource.isActiveAndEnabled)
+                bgmAudioSource.Play();
         }
 
         private void Update()

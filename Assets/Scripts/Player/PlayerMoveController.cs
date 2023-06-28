@@ -220,6 +220,6 @@ public class PlayerMoveController : MonoBehaviour
         SetMovable(true);
         rb2d.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
-
+        
     #endregion
 }

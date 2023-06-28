@@ -18,7 +18,8 @@ namespace UI
 
         private void FixedUpdate()
         {
-            transform.Translate(new Vector3(-1f, 0f, 0f) * (Time.fixedDeltaTime * speed));
+            transform
+                .Translate(new Vector3(-1f, 0f, 0f) * (Time.fixedDeltaTime * speed));
         }
     }
 } 

@@ -24,4 +24,14 @@ namespace Common
         // PlayerPrefs keys
         public static readonly string CurrentSceneIndex = "CurrentSceneIndex";
     }
+
+    public static class DeathBringerAnim
+    {
+        public static readonly int AnimState = Animator.StringToHash("AnimState"); // enum BanditAnimationState
+        public static readonly int Grounded = Animator.StringToHash("Grounded"); // bool
+        public static readonly int Attack = Animator.StringToHash("Attack"); // trigger
+        public static readonly int Hurt = Animator.StringToHash("Hurt"); // trigger
+        public static readonly int Dead = Animator.StringToHash("Dead"); // trigger
+        public static readonly int Cast = Animator.StringToHash("Cast"); // trigger
+    }
 }
